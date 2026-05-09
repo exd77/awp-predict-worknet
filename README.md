@@ -135,7 +135,7 @@ predict-agent history --limit 20        # Show recent prediction history
 predict-agent set-persona conservative  # Set risk/persona style
 ```
 
-## Machine setup flowchart
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -175,27 +175,6 @@ This code is designed to fail safe:
 - If the LLM returns provider errors, quota text, or malformed output, the loop does not invent a trade.
 - If the market setup is weak, conservative mode can skip instead of forcing all 3 submissions.
 - If an order does not fill, it can resolve as cancelled/unfilled with no chips spent.
-
-## Sensitive files intentionally excluded
-
-Do not commit any of these:
-
-```text
-.env
-*.env
-*.local
-*.local.sh
-logs/
-target/
-/root/.hermes/
-/root/.openclaw/
-/root/.config/gh/
-/root/.git-credentials
-wallet keystores
-OAuth tokens
-API keys
-private keys
-```
 
 ## Development
 
