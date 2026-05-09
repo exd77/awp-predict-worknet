@@ -1,0 +1,30 @@
+# Rust build artifacts
+/target/
+
+# Local runtime files
+/logs/
+*.log
+*.pid
+*.local
+*.local.sh
+
+# Env and secrets
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.p12
+*.pfx
+*.keystore
+
+# Wallet/provider state - never commit these
+.hermes/
+.openclaw/
+.awp-wallet/
+.openclaw-wallet/
+
+# Editors / OS
+.DS_Store
+.vscode/
+.idea/
