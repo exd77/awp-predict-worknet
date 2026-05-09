@@ -138,31 +138,31 @@ predict-agent set-persona conservative  # Set risk/persona style
 ## Machine setup flowchart
 
 ```mermaid
-flowchart TD
-    A[Start from local machine] --> B[Install awp-wallet]
-    B --> C[Restore or verify wallet]
+flowchart LR
+    A[Local machine] --> B[Install awp-wallet]
+    B --> C[Verify or restore wallet]
     C --> D[Set AWP_WALLET_HOME]
-    D --> E[Build and install predict-agent]
-    E --> F[predict-agent preflight]
-    F --> G{Registered and API reachable?}
-    G -- No --> H[Follow preflight next_command]
+    D --> E[Build predict-agent]
+    E --> F[Run preflight]
+    F --> G{Ready?}
+    G -- No --> H[Follow next_command]
     H --> F
-    G -- Yes --> I[predict-agent stake]
-    I --> J{1000 AWP allocated to Predict WorkNet?}
-    J -- No --> K[Stake or allocate via AWP flow]
+    G -- Yes --> I[Check stake]
+    I --> J{1000 AWP allocated?}
+    J -- No --> K[Stake or allocate]
     K --> I
-    J -- Yes --> L[Configure OpenClaw predict-worker]
-    L --> M[Smoke test strict JSON decision]
-    M --> N{LLM returns valid JSON?}
-    N -- No --> O[Fix model/auth/fallback]
+    J -- Yes --> L[Configure predict-worker]
+    L --> M[Smoke test JSON]
+    M --> N{Valid LLM output?}
+    N -- No --> O[Fix model or auth]
     O --> M
-    N -- Yes --> P[Start single predict-agent loop]
-    P --> Q[Fetch market + challenge]
-    Q --> R[LLM decides submit or skip]
-    R --> S{Strong edge and valid structured output?}
-    S -- Skip --> T[Wait for next round]
+    N -- Yes --> P[Start single loop]
+    P --> Q[Market + challenge]
+    Q --> R[LLM decision]
+    R --> S{Strong valid edge?}
+    S -- Skip --> T[Wait next round]
     S -- Submit --> U[Submit prediction]
-    U --> V[Monitor fill, result, orders]
+    U --> V[Monitor orders/results]
     T --> Q
     V --> Q
 ```
